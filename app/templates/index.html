@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minimal List App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-100 p-6">
+    <main class="mx-auto max-w-xl rounded-xl bg-white p-6 shadow">
+      <h1 class="text-2xl font-bold text-slate-900">Simple List</h1>
+      <p class="mt-1 text-sm text-slate-600">
+        Name: {{ person_name }} • Year: {{ year }} • Model: {{ study_model }}
+      </p>
+
+      <form action="/items" method="post" class="mt-6 flex gap-2">
+        <input
+          type="text"
+          name="text"
+          required
+          placeholder="Add a list item"
+          class="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none ring-sky-500 focus:ring"
+        />
+        <button
+          type="submit"
+          class="rounded-md bg-sky-600 px-4 py-2 font-medium text-white hover:bg-sky-700"
+        >
+          Add
+        </button>
+      </form>
+
+      <ul class="mt-6 space-y-2">
+        {% for item in items %}
+        <li class="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-slate-800">
+          {{ item.text }}
+        </li>
+        {% else %}
+        <li class="rounded-md border border-dashed border-slate-300 px-3 py-2 text-slate-500">
+          No items yet.
+        </li>
+        {% endfor %}
+      </ul>
+    </main>
+  </body>
+</html>
